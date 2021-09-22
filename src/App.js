@@ -36,8 +36,6 @@ function App() {
                 break;
 
             default:
-                setCounter(counter - 1);
-
 
                 switch (id) {
                     case "Appels":
