@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
 import InputField from './InputField.js';
 import './Form.css';
@@ -8,32 +8,32 @@ import './Form.css';
 
 function Form() {
 
-    const { handleSubmit, formState: { errors }, register , watch } = useForm({mode:"onTouched"});
+  const { handleSubmit, formState: { errors }, register , watch } = useForm({mode:"onTouched"});
 
     const selectedDeliveryFrequenty = watch("deliveryFrequenty");
 
 
     function onFormSubmit(data) {
         console.log(data);
+        console.log("submitted");
     }
 
 
 
     return (
-        <div>
-            <form className="form" onSubmit={handleSubmit(onFormSubmit)}>
+        <form className="form" onSubmit={handleSubmit(onFormSubmit)}>
 
                     <InputField id="details-firstName" label="Voornaam:" type="text"
-                                {...register("firstName", {required: true})}
+                                {...register("firstName", {required: false})}
                     />
 
                     <InputField id="details-lastName" label="Achternaam:" type="text"
-                                {...register("lastName", {required: true})}
+                                {...register("lastName", {required: false})}
                     />
 
                     <InputField id="details-age" label="Leeftijd:" type="number"
                                 {...register("age", {
-                                        required: true,
+                                        required: false,
                                         min: {
                                             value: 18,
                                             message: "U moet minimaal 18 jaar zijn"
@@ -64,7 +64,28 @@ function Form() {
                         }
                     </label>
 
-                    <label htmlFor="comments">
+                <span>
+                <label htmlFor="day-part">
+                    Overdag
+                    <input
+                        type="radio"
+                        id="day-part"
+                        name="day-part"
+                        value="day"
+                    />
+                </label>
+                <label htmlFor="day-part">
+                    's Avonds'
+                    <input
+                        type="radio"
+                        id="day-part"
+                        name="day-part"
+                        value="night"
+                    />
+                </label>
+                </span>
+
+                <label htmlFor="comments">
                         Opmerking:
                         <textarea
                             {...register("comments")}
@@ -88,8 +109,8 @@ function Form() {
                     <button type="submit">
                         Verzend
                     </button>
-            </form>
-        </div>
+          </form>
+
     );
 }
 
