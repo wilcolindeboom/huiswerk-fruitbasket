@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Fruit.css';
 
 function Fruit({id,name,emoji,add,counter,subtract}) {
 
